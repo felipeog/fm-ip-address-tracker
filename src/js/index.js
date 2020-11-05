@@ -1,8 +1,15 @@
 /**
  * map config
  */
-const map = L.map('map')
-const marker = L.marker([0, 0]).addTo(map)
+const map = L.map('map', {
+  zoomControl: false,
+})
+const icon = L.icon({
+  iconUrl: '../img/icon-location.svg',
+  iconSize: [32, 42],
+  iconAnchor: [32, 42],
+})
+const marker = L.marker([0, 0], { icon }).addTo(map)
 const layer = L.tileLayer(
   'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
   {
@@ -22,11 +29,9 @@ const layer = L.tileLayer(
 const form = document.querySelector('.search__form')
 const input = document.querySelector('.search__input')
 
-const tagIp = document.querySelector('.content__ip')
-const tagCountry = document.querySelector('.content__country')
-const tagRegion = document.querySelector('.content__region')
-const tagPostalCode = document.querySelector('.content__postal-code')
-const tagTimezone = document.querySelector('.content__time-zone')
+const tagIp = document.querySelector('.content__ip-address')
+const tagLocation = document.querySelector('.content__location')
+const tagTimezone = document.querySelector('.content__timezone')
 const tagIsp = document.querySelector('.content__isp')
 
 /**
@@ -34,10 +39,8 @@ const tagIsp = document.querySelector('.content__isp')
  */
 const setContent = ({ ip, country, region, postalCode, timezone, isp }) => {
   tagIp.textContent = ip
-  tagCountry.textContent = country
-  tagRegion.textContent = region
-  tagPostalCode.textContent = postalCode
-  tagTimezone.textContent = timezone
+  tagLocation.textContent = `${country}, ${region} ${postalCode}`
+  tagTimezone.textContent = `UTC${timezone}`
   tagIsp.textContent = isp
 }
 
@@ -70,7 +73,7 @@ const setLocation = (location = null) => {
     })
     .catch(err => {
       console.error(err)
-      alert('An error ocurred.')
+      alert('An error ocurred. Please, reload the page or try again later.')
     })
 }
 

@@ -6,22 +6,32 @@ block title
 block content
   //- include views/mixins/my-mixin
 
-  .wrapper
+  main.wrapper
     .top
-      .search
+      section.search
         h1.search__title IP Address Tracker
         
         form.search__form
-          input.search__input(type="text", name="ip")
-          button.search__button(type="submit") Search
+          input.search__input(type="text" name="ip" placeholder="Search for any IP address or domain")
+          button.search__button(type="submit")
+            img.search__icon(src="./img/icon-arrow.svg" alt="")
 
-      .content
-        p.content__ip
-        p.content__country
-        p.content__region
-        p.content__postal-code
-        p.content__time-zone
-        p.content__isp
+      section.content
+        article.content__data
+          h2.content__title IP address
+          p.content__ip-address
+
+        article.content__data
+          h2.content__title Location
+          p.content__location
+
+        article.content__data
+          h2.content__title Timezone
+          p.content__timezone
+
+        article.content__data
+          h2.content__title ISP
+          p.content__isp
 
     .bottom  
       #map
