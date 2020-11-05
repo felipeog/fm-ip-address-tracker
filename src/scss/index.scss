@@ -74,8 +74,6 @@ button {
 }
 
 .content {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(auto, 12rem));
   margin: 0 auto;
   background: #fff;
   color: #000;
@@ -108,4 +106,29 @@ button {
 
 #map {
   height: 100%;
+}
+
+@media screen and (min-width: 1000px) {
+  .content {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(auto, 12rem));
+
+    &__data {
+      padding: 0 1.4rem;
+    }
+
+    &__data + &__data {
+      border-left: 0.1rem solid #e6e6e6;
+    }
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .top {
+    padding: 0 2rem;
+  }
+
+  .content {
+    text-align: center;
+  }
 }
