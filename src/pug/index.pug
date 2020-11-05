@@ -6,4 +6,22 @@ block title
 block content
   //- include views/mixins/my-mixin
 
-  #mapid
+  .wrapper
+    .top
+      .search
+        h1.search__title IP Address Tracker
+        
+        form.search__form
+          input.search__input(type="text", name="ip")
+          button.search__button(type="submit") Search
+
+      .content
+        p.content__ip
+        p.content__country
+        p.content__region
+        p.content__postal-code
+        p.content__time-zone
+        p.content__isp
+
+    .bottom  
+      #map

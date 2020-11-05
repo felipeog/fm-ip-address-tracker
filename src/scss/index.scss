@@ -7,6 +7,14 @@
   box-sizing: border-box;
 }
 
-#mapid {
-  min-height: 100vh;
+.top {
+  height: 30vh;
+}
+
+.bottom {
+  height: 70vh;
+}
+
+#map {
+  height: 100%;
 }
