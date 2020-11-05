@@ -96,7 +96,6 @@ button {
     text-transform: uppercase;
     font-size: 0.6rem;
     color: $dark-gray;
-    margin-bottom: 0.8rem;
   }
 }
 
@@ -120,6 +119,10 @@ button {
     &__data + &__data {
       border-left: 0.1rem solid #e6e6e6;
     }
+
+    &__title {
+      margin-bottom: 0.8rem;
+    }
   }
 }
 
@@ -130,5 +133,13 @@ button {
 
   .content {
     text-align: center;
+
+    &__data + &__data {
+      margin-top: 1rem;
+    }
+
+    &__title {
+      margin-bottom: 0.2rem;
+    }
   }
 }
