@@ -1,5 +1,9 @@
 'use strict'
 
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config({ path: './.env.dev' })
+}
+
 var autoprefixer = require('autoprefixer')
 var babel = require('gulp-babel')
 var browserSync = require('browser-sync')
@@ -10,6 +14,7 @@ var htmlmin = require('gulp-htmlmin')
 var imagemin = require('gulp-imagemin')
 var postcss = require('gulp-postcss')
 var pug = require('gulp-pug')
+var replace = require('gulp-token-replace')
 var sass = require('gulp-sass')
 var uglify = require('gulp-uglify')
 
@@ -52,12 +57,19 @@ function buildCSS(cb) {
 }
 
 function buildJS(cb) {
+  var replaceOptions = {
+    global: {
+      IPIFY_TOKEN: process.env.IPIFY_TOKEN,
+      MAPBOX_TOKEN: process.env.MAPBOX_TOKEN,
+    },
+  }
   var babelOptions = {
     presets: ['@babel/env'],
   }
 
   gulp
     .src(jsDir, { sourcemaps: true })
+    .pipe(replace(replaceOptions))
     .pipe(babel(babelOptions))
     .pipe(concat('index.js'))
     .pipe(uglify())
