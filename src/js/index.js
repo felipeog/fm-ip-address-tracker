@@ -44,14 +44,39 @@ const setContent = ({ ip, country, region, postalCode, timezone, isp }) => {
   tagIsp.textContent = isp
 }
 
+const getQueryString = input => {
+  if (!input || typeof input !== 'string') return ''
+
+  const cleanInput = input
+    .trim()
+    .replace('http://', '')
+    .replace('https://', '')
+    .replace('/', '')
+
+  if (/\S+@\S+\.\S+/.test(cleanInput)) {
+    return `&email=${cleanInput}`
+  }
+
+  if (/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/.test(cleanInput)) {
+    return `&ipAddress=${cleanInput}`
+  }
+
+  return `&domain=${cleanInput}`
+}
+
 const setLocation = (location = null) => {
-  const queryString = location ? `&ipAddress=${location}` : ''
+  const queryString = getQueryString(location)
 
   fetch(`https://geo.ipify.org/api/v1?apiKey={{IPIFY_TOKEN}}${queryString}`)
     .then(res => res.json())
     .then(data => {
-      if (data?.messages) {
-        alert(data.messages)
+      if (data?.code) {
+        const { code, messages } = data
+
+        console.error(`Error @ setLocation >>>>> ${code}: ${messages}`)
+        alert(
+          `Please, check your input or try again later.\nError ${code}: ${messages}`,
+        )
       } else {
         const {
           ip,
@@ -72,7 +97,7 @@ const setLocation = (location = null) => {
       }
     })
     .catch(err => {
-      console.error(err)
+      console.error(`Error @ setLocation >>>>> ${err}`)
       alert('An error ocurred. Please, reload the page or try again later.')
     })
 }
