@@ -21,7 +21,7 @@ button {
 .top {
   display: flex;
   flex-direction: column;
-  height: 12rem;
+  height: 14rem;
   background-image: url(../img/pattern-bg.png);
   background-size: cover;
   color: #fff;
@@ -81,6 +81,7 @@ button {
   z-index: 600;
   line-height: 1.4;
   font-weight: 500;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.14);
 
   &__data {
     padding: 0 1.4rem;
@@ -98,7 +99,7 @@ button {
 }
 
 .bottom {
-  height: calc(100vh - 12rem);
+  height: calc(100vh - 14rem);
 }
 
 #map {
