@@ -4,7 +4,7 @@ block title
   title Frontend Mentor | IP Address Tracker
 
 block content
-  //- include views/mixins/my-mixin
+  include views/mixins/card
 
   main.wrapper
     .top
@@ -17,21 +17,10 @@ block content
             img.search__icon(src="./img/icon-arrow.svg" alt="")
 
       section.content
-        article.content__data
-          h2.content__title IP address
-          p.content__ip-address
-
-        article.content__data
-          h2.content__title Location
-          p.content__location
-
-        article.content__data
-          h2.content__title Timezone
-          p.content__timezone
-
-        article.content__data
-          h2.content__title ISP
-          p.content__isp
+        +card("IP address")(class="content__ip-address")
+        +card("Location")(class="content__location")
+        +card("Timezone")(class="content__timezone")
+        +card("ISP")(class="content__isp")
 
     .bottom  
       #map
