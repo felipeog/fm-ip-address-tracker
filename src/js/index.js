@@ -49,9 +49,9 @@ const getQueryString = input => {
 
   const cleanInput = input
     .trim()
-    .replace('http://', '')
-    .replace('https://', '')
-    .replace('/', '')
+    .replace(/http:\/\//g, '')
+    .replace(/https:\/\//g, '')
+    .replace(/\//g, '')
 
   if (/\S+@\S+\.\S+/.test(cleanInput)) {
     return `&email=${cleanInput}`
