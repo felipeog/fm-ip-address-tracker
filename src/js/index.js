@@ -20,7 +20,7 @@ const layer = L.tileLayer(
     tileSize: 512,
     zoomOffset: -1,
     accessToken: '{{MAPBOX_TOKEN}}',
-  },
+  }
 ).addTo(map)
 
 /**
@@ -44,7 +44,7 @@ const setContent = ({ ip, country, region, postalCode, timezone, isp }) => {
   tagIsp.textContent = isp
 }
 
-const getQueryString = input => {
+const getQueryString = (input) => {
   if (!input || typeof input !== 'string') return ''
 
   const cleanInput = input
@@ -68,14 +68,14 @@ const setLocation = (location = null) => {
   const queryString = getQueryString(location)
 
   fetch(`https://geo.ipify.org/api/v1?apiKey={{IPIFY_TOKEN}}${queryString}`)
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       if (data?.code) {
         const { code, messages } = data
 
         console.error(`Error @ setLocation >>>>> ${code}: ${messages}`)
         alert(
-          `Please, check your input or try again later.\nError ${code}: ${messages}`,
+          `Please, check your input or try again later.\nError ${code}: ${messages}`
         )
       } else {
         const {
@@ -96,7 +96,7 @@ const setLocation = (location = null) => {
         })
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(`Error @ setLocation >>>>> ${err}`)
       alert('An error ocurred. Please, reload the page or try again later.')
     })
@@ -109,7 +109,7 @@ window.addEventListener('load', () => {
   setLocation()
 })
 
-form.addEventListener('submit', e => {
+form.addEventListener('submit', (e) => {
   e.preventDefault()
 
   const location = input.value

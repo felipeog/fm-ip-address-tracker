@@ -5,14 +5,22 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development npm run build && NODE_ENV=development gulp start",
-    "build": "rm -rf ./build && gulp build"
+    "build": "rm -rf ./build && gulp build",
+    "prettier": "prettier --write \"./**/*.{pug,scss,js,json}\"",
+    "precommit:echo-prettier": "echo \"Running Prettier...\" && exit 0",
+    "precommit:prettier": "pretty-quick --staged"
   },
+  "precommit": [
+    "precommit:echo-prettier",
+    "precommit:prettier"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
+    "@prettier/plugin-pug": "^1.10.1",
     "autoprefixer": "9.8.6",
     "browser-sync": "^2.26.12",
     "cssnano": "^4.1.10",
@@ -26,6 +34,9 @@
     "gulp-pug": "^4.0.1",
     "gulp-sass": "^4.1.0",
     "gulp-token-replace": "^1.1.5",
-    "gulp-uglify": "^3.0.2"
+    "gulp-uglify": "^3.0.2",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.1.2",
+    "pretty-quick": "^3.1.0"
   }
 }

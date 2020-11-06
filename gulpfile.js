@@ -27,7 +27,7 @@ var scssDir = `${srcDir}/scss/**/*.scss`
 var jsDir = `${srcDir}/js/**/*.js`
 var imgDir = `${srcDir}/img/**/*`
 
-// build
+// build functions
 function buildHTML(cb) {
   var htmlminOptions = { collapseWhitespace: true, removeComments: true }
   var srcOptions = [pugDir, `!${srcDir}/pug/views/**/*.pug`]
@@ -89,7 +89,7 @@ function buildImage(cb) {
   cb()
 }
 
-// functions
+// export functions
 function start(cb) {
   var browserSyncOptions = {
     server: buildDir,
@@ -107,6 +107,5 @@ function start(cb) {
   cb()
 }
 
-// exports
 exports.build = gulp.parallel(buildHTML, buildCSS, buildJS, buildImage)
 exports.start = start
