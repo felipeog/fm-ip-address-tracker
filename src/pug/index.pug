@@ -15,12 +15,14 @@ block content
           input.search__input(
             type='text',
             name='ip',
-            placeholder='Search for any IP address or domain'
+            placeholder='Search for any IP address or domain',
+            aria-label='Search input'
           )
-          button.search__button(type='submit')
+          button.search__button(type='submit', aria-label='Searct button')
             img.search__icon(src='./img/icon-arrow.svg', alt='')
 
       section.content
+        h1.hidden Page content
         +card("IP address").content__ip-address
         +card("Location").content__location
         +card("Timezone").content__timezone
